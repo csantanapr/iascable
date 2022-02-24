@@ -51,11 +51,6 @@ jobs:
         with:
           node-version: '14'
 
-      - name: Update package.json
-        run: |
-          git config --global user.email "action@github.com"
-          git config --global user.name "GitHub Action"
-          npm version ${{ steps.create-release.outputs.tag_name }}
 
       - name: Build
         run: npm ci && npm run build
