@@ -57,6 +57,15 @@ jobs:
           git config --global user.name "GitHub Action"
           npm version ${{ steps.create-release.outputs.tag_name }}
 
+      - name: Build
+        run: npm ci && npm run build
+
+      - name: Install pkg
+        run: npm install -g pkg
+
+      - name: Build Asset
+        run: pkg -o iascable --options no-warnings .
+
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
